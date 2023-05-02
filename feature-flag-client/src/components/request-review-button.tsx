@@ -1,4 +1,4 @@
-import React from 'react';
+import { useGetFlagValue } from '../providers/LaunchDarkly/LaunchDarkly';
 
 // Problem: 
 //     This should be coloured based on FF value
@@ -6,6 +6,13 @@ import React from 'react';
 //     details-section-cta-colour
 // Setup: 
 //     Fill background color with flag value.
-export const RequestReviewButton = () => (
-  <button>Request doctor review</button>
-)
+export const RequestReviewButton = () => {
+  const detailsSectionCtaColour = useGetFlagValue("details-section-cta-colour");
+
+  // For the sake for brevity, i'll just use inline styles here.
+  const style = {
+    backgroundColor: detailsSectionCtaColour ?? "inherit"
+  }
+
+  return (<button style={style}>Request doctor review</button>);
+}

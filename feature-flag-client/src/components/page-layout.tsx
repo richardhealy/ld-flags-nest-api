@@ -1,4 +1,4 @@
-import React from 'react';
+import { useGetFlagValue } from '../providers/LaunchDarkly/LaunchDarkly';
 
 // Problem: 
 //     This should be conditionally rendered based on feature flag enrolment.
@@ -13,9 +13,12 @@ const PromotionalBanner = () => (
 )
 
 export const PageLayout = ({ children, className }: { children: React.ReactNode, className: string }) => {
+
+  const launchBannerFlagKey = useGetFlagValue("general-render-launch-banner");
+
   return (
     <div className={`page-layout ${className}`}>
-      <PromotionalBanner />
+      { launchBannerFlagKey ? <PromotionalBanner /> : null }
       {children}
     </div>
   )
