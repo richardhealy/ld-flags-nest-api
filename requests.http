@@ -1,0 +1,2 @@
+### Get all answers for a questionnaire
+GET http://localhost:3000/v1/questionnaires/1/answers

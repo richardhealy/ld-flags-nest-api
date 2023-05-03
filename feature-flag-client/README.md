@@ -1,3 +1,21 @@
+# Dev Assumptions
+
+- Using the LaunchDarkly SDK, I created a Provider that can be wrapped around the flags to the entire 
+  app. The `useGetFlagValue` hook can be used to get the flag value from the context.
+- The flags state in the provider are set as the raw data and not exposed to the rest of the app.
+  This is due to ensuring type-safety and only allowing valid flags to be called.
+- Regarding Flag keys, there were a couple of interesting ways to handle this. I initially thought
+  that validating the flags using Zod would be good, but I thought that if flags are added/removed
+  from LaunchDarkly, then Zod parse would through errors, which is non ideal. For the flags to 
+  be used in the code base, a key needs to be defined in `src/providers/LaunchDarkly/types.ts`
+  and the `src/feature-flag-config.ts` (though it could be possible to merge these two files).
+  This would allow for type-safety and ensure that the flag keys are valid. As flags are added
+  into the code base to be used anyway, I thought this would be the best strategy allowing for
+  narrow type-safety and relevant values.
+- Tests were created for all LaunchDarkly Provider and hook and the components. screens were 
+  not tested as they were not changed. (though obviously they needed tests before being merged)
+- Needed to do a bit of test setup to ensure RTL worked as expected.
+
 # **Getting Started**
 
 ### **Requirements**
