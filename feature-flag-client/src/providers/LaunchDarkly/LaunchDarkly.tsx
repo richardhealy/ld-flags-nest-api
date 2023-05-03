@@ -6,7 +6,7 @@ interface ILaunchDarklyContext {
   getFlagValue: <T extends keyof FlagsType>(key: T) => FlagsType[T] | undefined
 };
 
-const LaunchDarklyContext = createContext<ILaunchDarklyContext>({
+export const LaunchDarklyContext = createContext<ILaunchDarklyContext>({
   getFlagValue: <T extends keyof FlagsType>(key: T) => { return undefined }
 });
 
@@ -32,10 +32,13 @@ export const LaunchDarklyProvider = ({ children }) => {
       kind: 'user',
       key: REACT_APP_LAUNCH_DARKLY_CLIENT_ID
     };
+  
     const client = initialize(REACT_APP_LAUNCH_DARKLY_CLIENT_ID, context);
     
     const getFeatureFlags = () => {
-      setFlags(client.allFlags());
+      const _flags = client.allFlags();
+      console.log(_flags);
+      setFlags(_flags);
     };
 
     getFeatureFlags();
@@ -59,7 +62,6 @@ export const LaunchDarklyProvider = ({ children }) => {
     </LaunchDarklyContext.Provider>
   );
 }
-
 
 export const useGetFlagValue = <T extends keyof FlagsType>(
   key: T,
