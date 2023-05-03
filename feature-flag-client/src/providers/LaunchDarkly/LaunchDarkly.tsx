@@ -37,7 +37,7 @@ export const LaunchDarklyProvider = ({ children }) => {
     
     const getFeatureFlags = () => {
       const _flags = client.allFlags();
-      console.log(_flags);
+      console.log(_flags); // Console left here as per requirement
       setFlags(_flags);
     };
 

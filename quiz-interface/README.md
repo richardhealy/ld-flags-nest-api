@@ -1,3 +1,26 @@
+# Dev Assumptions
+
+- I went with a really basic approach here. The requirements only stated that
+  "Design a REST or GraphQL API that allows retrieving the following properties for a patient:"
+  Where I made the assumption that "properties" meant answers to the questions.
+- There was no guidance in terms of shape of the output so I went to a simple
+  approach of returning an array of answers matching the shape of the entity.
+- As this was a simple API, I used a simple route structure to get the answers 
+  for a particular questionnaire, as this was where the datetime was stored.
+- I could have gone for GraphQL but I thought that would be overkill for this
+  simple API.
+- I hope you don't mind but I went with using Nest.js. I prefer their approach
+  to building APIs and I think it's a great framework. Also out-the-box DI makes it 
+  easy to test.
+
+## Dev Starting Node.js
+
+- `yarn start:dev`
+
+## Dev Run Tests
+
+- `yarn test`
+
 ## Getting Started
 
 ### Requirements

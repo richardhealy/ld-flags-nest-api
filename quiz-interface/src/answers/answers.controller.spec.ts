@@ -7,6 +7,10 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { answers } from '../fixtures/answers';
 
+// This is to ensure that we have control over the mocking of the repository
+// Probably could centralize this. Something I read about future proofing
+// tests as Nest wants to move away from the repository pattern and work with
+// pure objects.
 type MockRepository<T = any> = Partial<Record<keyof Repository<T>, jest.Mock>>;
 const createMockRepository = <T = any>(): MockRepository<T> => ({
   find: jest.fn(),

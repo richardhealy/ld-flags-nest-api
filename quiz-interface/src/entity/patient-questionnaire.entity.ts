@@ -23,7 +23,8 @@ export class PatientQuestionnaire {
   updated_at: string;
 
   // According to TypeORM docs, Postgres doesn't have
-  // `datetime` type, but sqlite does.
+  // `datetime` type, but sqlite does. Need to look at
+  // this more as we would want to ensure ISO format dates
   @Column({ type: 'datetime' })
   completed_at: string;
 }

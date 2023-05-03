@@ -2,7 +2,7 @@ import { BadRequestException, Controller, Get, Param } from '@nestjs/common';
 import { AnswersService } from './answers.service';
 
 @Controller({
-  version: '1',
+  version: '1', // Version baked in
   path: '/questionnaires/:questionnaireId/answers',
 })
 export class AnswersController {
